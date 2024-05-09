@@ -75,7 +75,7 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
                 * ip-full
         * Other modules/utilites/languages if needed (usbutils, canutils-cansend, canutils-candump, luci, python)
     * Save and exit (**use the deafult config file name without changing it**)
-5. Change default configuration files:
+5. Change default configuration files if needed:
 
     * Hardware resources (USB, GPIO, Flash, etc.): `target/linux/ramips/dts/mt7628an_mediatek_linkit-smart-7688.dts`
     * Ethernet network configuration: `target/linux/ramips/mt76x8/base-files/etc/board.d/02_network`
