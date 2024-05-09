@@ -38,7 +38,7 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
     $ ./scripts/feeds update -a
     $ ./scripts/feeds install -a
     ```
-6. To `package/kernel/linux/modules/can.mk` add lines:
+6. Enagle gs-usb kernel module by addind lines to `package/kernel/linux/modules/can.mk`:
     
     ```
     define KernelPackage/can-gs-usb
@@ -75,15 +75,40 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
                 * ip-full
         * Other modules/utilites/languages if needed (usbutils, canutils-cansend, canutils-candump, luci, python)
     * Save and exit (**use the deafult config file name without changing it**)
-8. Start the compilation process:
+5. Change default configuration files:
+
+    * Hardware resources (USB, GPIO, Flash, etc.): `target/linux/ramips/dts/mt7628an_mediatek_linkit-smart-7688.dts`
+    * Ethernet network configuration: `target/linux/ramips/mt76x8/base-files/etc/board.d/02_network`
+9. Start the compilation process:
     
     ```
     $ make -j$(nproc) defconfig download clean world
     ```
-9. After the build process completes, the resulted firmware file will be under `bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-mediatek_linkit-smart-7688-squashfs-sysupgrade.bin`. You can use this file to do the firmware upgrade through the Web UI. Or rename it to `lks7688.img` for upgrading through a USB drive.
+10. After the build process completes, the resulted firmware file will be under `bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-mediatek_linkit-smart-7688-squashfs-sysupgrade.bin`. You can use this file to do the firmware upgrade through the Web UI. Or rename it to `lks7688.img` for upgrading through a USB drive.
 
 
 ## Configure network
+
+1. In `/etc/config/network` add wan:
+    
+    ```
+    config interface 'wan'
+        option proto 'dhcp'
+    ``````
+2. In `/etc/config/wireless` set `radio0 option disabled` to `0` and add sta:
+    
+    ```
+    config wifi-iface 'sta'
+        option device 'radio0'
+        option mode 'sta'
+        option network 'wan'
+        option ifname 'apcli0'
+        option led 'mediatek:orange:wifi'
+        option ssid '$YOURSSID'
+        option key '$YOURKEY'
+        option encryption 'psk2'
+    ```
+3. Set can0 interface:
     
     ```
     $ ip link set can0 type can bitrate 100000
@@ -91,8 +116,9 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
     $ ifconfig can0 down
     ```
 ## Links
-    OpenWRT buildsystem [prereq https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem](prereq https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
-    OpenWRT build [https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
-    GS-USB patch (not needed on 23.05.3) [https://github.com/normaldotcom/socketcan_gs_usb](https://github.com/normaldotcom/socketcan_gs_usb{
-    LinkIt Smart 7688 feeds [https://github.com/MediaTek-Labs/linkit-smart-7688-feed](https://github.com/MediaTek-Labs/linkit-smart-7688-feed)
-    
+
+* OpenWRT buildsystem [https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
+* OpenWRT build [https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
+* LinkIt Smart 7688 feeds [https://github.com/MediaTek-Labs/linkit-smart-7688-feed](https://github.com/MediaTek-Labs/linkit-smart-7688-feed)
+* GS-USB patch (not needed on 23.05.3) [https://github.com/normaldotcom/socketcan_gs_usb](https://github.com/normaldotcom/socketcan_gs_usb)
+* GS-USB thread [https://forum.openwrt.org/t/rfe-enable-config-can-gs-usb-in-package-kernel-linux-modules-can-mk/44807](https://forum.openwrt.org/t/rfe-enable-config-can-gs-usb-in-package-kernel-linux-modules-can-mk/44807)
