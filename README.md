@@ -38,7 +38,7 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
     $ ./scripts/feeds update -a
     $ ./scripts/feeds install -a
     ```
-6. Enagle gs-usb kernel module by addind lines to `package/kernel/linux/modules/can.mk`:
+6. Enable gs-usb kernel module by addind lines to `package/kernel/linux/modules/can.mk`:
     
     ```
     define KernelPackage/can-gs-usb
@@ -125,5 +125,5 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
 * OpenWRT buildsystem [https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 * OpenWRT build [https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
 * LinkIt Smart 7688 feeds [https://github.com/MediaTek-Labs/linkit-smart-7688-feed](https://github.com/MediaTek-Labs/linkit-smart-7688-feed)
-* GS-USB patch (not needed on 23.05.3) [https://github.com/normaldotcom/socketcan_gs_usb](https://github.com/normaldotcom/socketcan_gs_usb)
-* GS-USB thread [https://forum.openwrt.org/t/rfe-enable-config-can-gs-usb-in-package-kernel-linux-modules-can-mk/44807](https://forum.openwrt.org/t/rfe-enable-config-can-gs-usb-in-package-kernel-linux-modules-can-mk/44807)
+* Patched gs_usb (not needed on 23.05.3) [https://github.com/normaldotcom/socketcan_gs_usb](https://github.com/normaldotcom/socketcan_gs_usb)
+* Thread of gs-usb on OpenWRT [https://forum.openwrt.org/t/rfe-enable-config-can-gs-usb-in-package-kernel-linux-modules-can-mk/44807](https://forum.openwrt.org/t/rfe-enable-config-can-gs-usb-in-package-kernel-linux-modules-can-mk/44807)
