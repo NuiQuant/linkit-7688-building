@@ -1,5 +1,5 @@
-# linkit-smart-7688 with gs_usb support (for candleLight, Bigtreetech U2C USB to CAN adapters)
-
+# linkit-smart-7688 with gs_usb support
+Useful for candleLight, Bigtreetech U2C USB to CAN adapters
 
 ## Build the firmware from sources
 
