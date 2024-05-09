@@ -4,7 +4,7 @@
 ## Build the firmware from sources
 
 This section describes how to build OpenWRT for LinkIt Smart 7688 from source codes.
-1. Install prerequisite packages for building the firmware [https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem):
+1. Install prerequisite packages for building the firmware:
     
     ```
     $ sudo apt update
@@ -27,7 +27,7 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
     ```
     $ cp feeds.conf.default feeds.conf
     ```
-4. Add the LinkIt Smart 7688 feed [https://github.com/MediaTek-Labs/linkit-smart-7688-feed](https://github.com/MediaTek-Labs/linkit-smart-7688-feed):
+4. Add the LinkIt Smart 7688 feed:
     
     ```
     $ echo src-git linkit https://github.com/MediaTek-Labs/linkit-smart-7688-feed.git >> feeds.conf
