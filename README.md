@@ -89,7 +89,7 @@ This section describes how to build OpenWRT for LinkIt Smart 7688 from source co
 
 ## Configure network
 
-1. In `/etc/config/network` add wan:
+1. In `/etc/config/network` change lan ip address if needed and add wan:
     
     ```
     config interface 'wan'
